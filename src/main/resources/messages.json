@@ -1,0 +1,70 @@
+{
+  "crimes": [
+    {
+      "message":"Du hast einen Juwelier ausgeraubt und dabei 2 Leute erschossen. Der Laden war voll mit gefüllten Vitrienen, welche du alle geleert hast. Deine Tasche ist voll mit wertvollem Schmuck.",
+      "max_coins": 1500
+    },
+    {
+      "message":"Eine kleine Bäckerei wurde von dir überfallen. Die Kasse war voller Geld und zum Essen konntest du dir auch einiges mitnehmen.",
+      "max_coins": 800
+    },
+    {
+      "message": "Du hast eine kleine Bank überfallen, in der ein paar reiche Leute ihr Geld lagern. Beim knacken der Tresore gab es große Schwierigkeiten. Trotzdem konntest du viel Geld mitnehmen.",
+      "max_coins": 1100
+    },
+    {
+      "message": "Durch Steuerhinterziehung konntest du einiges an Geld sparen. Über längere Zeit hinweg hast du Geld eingenommen ohne dafür Steuern zu zahlen.",
+      "max_coins": 950
+    },
+    {
+      "message": "Im Apple Store hast du einige iPhones geklaut. Diese teuren Geräte konntest du teuer im Internet verkaufen.",
+      "max_coins": 1230
+    },
+    {
+      "message": "Beim Oktoberfest bist du durch die Stände gelaufen und hast viele Waren eingesteckt. Im Anschluss hast du deinen eigenen Stand eröffnet, und dort die Waren verkauft.",
+      "max_coins": 650
+    },
+    {
+      "message": "Als Kölner Drogen-Boss hast du sehr viel Geld verdient. Du warst mit Top Bewertungen in der ganzen Stadt bekannt, deine Kunden waren begeistert.",
+      "max_coins": 1200
+    },
+    {
+      "message": "Bei der Deutschen Bahn hast du dich als Kontrolleur ausgegeben. Im Zug hast du Fahrgäste kontrolliert und von jenen das Geld eingesteckt, die schwarz gefahren sind.",
+      "max_coins": 880
+    },
+    {
+      "message": "Im Internet hast du einige Leute betrogen, was dir viel Geld eingebracht hat. Bei vielen Verkäufen hast du den Artikel nicht versendet, obwohl der Käufer bezahlt hat.",
+      "max_coins": 1020
+    },
+    {
+      "message": "Auf einer großen Party warst du im Club als einziger nüchtern. So haust du von vielen Leuten Geld und Wertgegenstände geklaut.",
+      "max_coins": 960
+    }
+  ],
+  "works": [
+    {
+      "message": "Du hast in der Eisdiele ausgeholfen. Du musstest vielen Leuten das Eis ausgeben, wobei du gute Arbeit geleistet hast! Zusätzlich zum Gehalt konntest du einiges an Gratis-Eis abstauben.",
+      "max_coins": 400
+    },
+    {
+      "message":"Auf einer Baustelle konntest du dein Können als Baggerfahrer beweisen! Von dem Haus, welches du abgerissen hast, ist nicht mehr viel übrig. Den Schaden an den wenigen Bäumen, den du während der Arbeit verursacht hast, hat zum Glück keiner bemerkt.",
+      "max_coins": 450
+    },
+    {
+      "message":"Als Kanalarbeiter machst du einen Job, den fast keiner machen möchte. Trotz des geringen Gehalts gibst du dir Mühe bei der Arbeit. So kann sich die Stadt über eine saubere Kanalisation freuen!",
+      "max_coins": 190
+    },
+    {
+      "message":"Für das schnelle Geld trägst du einige Zeitungen aus. Mit deinem Fahrrad fährst du durch das Dorf und verteilst diese. Am Ende deiner Tour wirst du von einem Hund gejagt, dem dein Besuch nicht gerade gefallen hat.",
+      "max_coins": 290
+    },
+    {
+      "message":"Du bedienst als Kellner ein paar Gäste an der Bar. Erfolgreich erwischt du 2 Minderjährige beim illegalen Alkohl-Kauf. Der Chef ist zufrieden mit dir!",
+      "max_coins": 480
+    },
+    {
+      "message":"Da du seit Wochen auf der Straße lebst, sammelst du dir Pfandflaschen am Bahnhof, um dir Kleinigkeiten kaufen zu können. Der heutige Tag erweist sich als Erfolgreich, du findest sehr viele Pfandflaschen.",
+      "max_coins": 90
+    }
+  ]
+}
