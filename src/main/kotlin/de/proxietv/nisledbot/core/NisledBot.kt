@@ -1,16 +1,19 @@
 package de.proxietv.nisledbot.core
 
 import com.google.gson.JsonObject
-import com.google.gson.stream.JsonReader
 import com.zaxxer.hikari.HikariDataSource
 import de.proxietv.nisledbot.command.CommandManager
-import de.proxietv.nisledbot.database.model.User
 import de.proxietv.nisledbot.database.table.UserGameStats
 import de.proxietv.nisledbot.database.table.UserRoles
 import de.proxietv.nisledbot.database.table.Users
-import de.proxietv.nisledbot.listener.guild.MessageReceiveListener
+import de.proxietv.nisledbot.listener.guild.GuildMemberJoinListener
+import de.proxietv.nisledbot.listener.guild.GuildMemberLeaveListener
+import de.proxietv.nisledbot.listener.guild.GuildMemberRoleListener
+import de.proxietv.nisledbot.listener.message.MessageReceiveListener
 import de.proxietv.nisledbot.utils.Constants
 import de.proxietv.nisledbot.utils.InviteTracker
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import net.dv8tion.jda.api.JDA
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -23,11 +26,8 @@ import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.entities.Guild
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
-import org.jetbrains.exposed.sql.StdOutSqlLogger
-import org.jetbrains.exposed.sql.addLogger
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.yaml.snakeyaml.Yaml
-import java.io.InputStream
 import java.io.InputStreamReader
 import java.nio.file.Paths
 
@@ -51,7 +51,7 @@ class NisledBot(private val logger: Logger = LoggerFactory.getLogger(NisledBot::
         commandManager = CommandManager(this)
         logger.info("Command-Manager set up!")
 
-        jda.addEventListener(MessageReceiveListener(this))
+        jda.addEventListener(MessageReceiveListener(this), GuildMemberRoleListener(this), GuildMemberLeaveListener(this), GuildMemberJoinListener(this))
 
         Runtime.getRuntime().addShutdownHook(Thread { jda.shutdown() })
 
@@ -84,7 +84,6 @@ class NisledBot(private val logger: Logger = LoggerFactory.getLogger(NisledBot::
             jdaBuilder.addEventListeners(object : ListenerAdapter() {
                 override fun onGuildReady(event: GuildReadyEvent) {
                     guild = event.guild
-                    println(guild!!.getEmotesByName("animated_bell", true).get(0).idLong)
                     InviteTracker()
                 }
             })

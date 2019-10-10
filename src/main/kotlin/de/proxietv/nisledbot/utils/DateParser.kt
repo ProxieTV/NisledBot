@@ -1,7 +1,6 @@
 package de.proxietv.nisledbot.utils
 
-
-object DataParserUtil {
+class DateParser(private val input: String) {
 
     private val UNIT_MILLIS = mapOf(
         *insertValue(31536000000L, "y", "year", "years"),
@@ -18,44 +17,25 @@ object DataParserUtil {
     }
 
 
-/*
-    private fun parseTime(time: String): Long {
-        val time = time.toLowerCase().replace(" ", "")
+    fun parse(): Long {
+        var finalTimeMillis = 0L
 
-        val iterator = time.iterator()
+        var currentTime = StringBuilder()
+        var currentUnit = StringBuilder()
 
-
-        var currentTime = ""
-        var currentFormat = ""
-        while (iterator.hasNext()) {
-            val char = iterator.next()
-        }
-
-        var result = 0L
-        val finalTime = time
-        if (iterator.hasNext()) {
-            val unit = iterator.next()
-            try {
-                time = time.substring(
-                    0,
-                    time.length - unit.key.length
-                ) // Removing the string of the current unit from the time
-                var numberStartIndex = 0 // Index where the number for the current timeUnit starts
-                for (i in time.length - 1 downTo 0) { // Iterate through chars from the end
-                    if (!Character.isDigit(time[i])) { // Checking if char at the index is not numeric
-                        numberStartIndex =
-                            i + 1 // Adding one to the index, because the current index would be not the start of the number
-                        break
-                    }
-                }
-                result += Integer.parseInt(time.substring(numberStartIndex)) * unit.value // Multiplying the found number with the time of the current unit and adding it to the result
-                time = time.substring(0, numberStartIndex) //Removing the number from the time
-            } catch (ignored: NumberFormatException) {
+        input.replace(" ", "").toLowerCase().forEach {
+            if (Character.isLetter(it) && currentTime.isNotEmpty()) currentUnit = currentUnit.append(it)
+            else if (Character.isDigit(it) && currentUnit.isEmpty()) currentTime = currentTime.append(it)
+            else {
+                finalTimeMillis += currentTime.toString().toLong() * (UNIT_MILLIS[currentUnit.toString()] ?: 0)
+                currentTime = currentTime.clear()
+                currentUnit = currentUnit.append(it)
             }
-
         }
-        return if (result == 0L || time.trim { it <= ' ' }.isEmpty()) result else result + parseTime(time) // Calling the method again for the next unit, when the result is not 0 and the time-String not empty
-    }
-*/
+        if (currentTime.isNotEmpty() && currentUnit.isNotEmpty()) {
+            finalTimeMillis += currentTime.toString().toLong() * (UNIT_MILLIS[currentUnit.toString()] ?: 0)
+        }
 
+        return finalTimeMillis
+    }
 }

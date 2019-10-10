@@ -43,15 +43,15 @@ class CommandManager(bot: NisledBot) : ListenerAdapter() {
         }
         val content = event.message.contentRaw
 
-        val botChannels = listOf(594624581793218560, 628976458571972609, 613070147338633226, 629290746012499988)
-        val globalCommands = listOf(".clear")
+        val botChannels = listOf(594624581793218560, 628976458571972609, 613070147338633226, 629290746012499988, 631840333608517672)
+        val globalCommands = listOf(".clear", ".purge", ".delete")
         if (content.startsWith(".") && (botChannels.contains(event.channel.idLong)
                     || globalCommands.stream().anyMatch { content.startsWith(it) } )) {
             val arguments = content.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
             val input = arguments[0].replaceFirst(".".toRegex(), "")
             var executed = false
             for (command in this.availableCommands) {
-                if (command.category.equals(Command.Category.STAFF) && (!event.member!!.roles
+                if (command.category == Command.Category.STAFF && (!event.member!!.roles
                         .contains(event.jda.getRoleById(TEAM_ROLE_ID)) || !event.member!!.hasPermission(Permission.ADMINISTRATOR))
                 ) {
                     continue

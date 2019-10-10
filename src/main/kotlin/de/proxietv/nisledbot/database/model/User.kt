@@ -3,6 +3,8 @@ package de.proxietv.nisledbot.database.model
 import de.proxietv.nisledbot.database.table.UserRoles
 import de.proxietv.nisledbot.database.table.Users
 import org.jetbrains.exposed.dao.*
+import org.jetbrains.exposed.sql.and
+import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.util.concurrent.ThreadLocalRandom
 
@@ -29,5 +31,18 @@ class User(id: EntityID<Long>) : Entity<Long>(id) {
             return@transaction true
         }
         return@transaction false
+    }
+
+    fun addRole(roleId: Long) = transaction {
+        UserRole.new {
+            this.user = this@User
+            this.role = roleId
+        }
+    }
+
+    fun removeRole(roleId: Long) = transaction {
+        UserRoles.deleteWhere {
+            UserRoles.user eq this@User.id and (UserRoles.role eq roleId)
+        }
     }
 }

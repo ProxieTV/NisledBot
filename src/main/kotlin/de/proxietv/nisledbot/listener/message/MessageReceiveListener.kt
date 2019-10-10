@@ -1,4 +1,4 @@
-package de.proxietv.nisledbot.listener.guild
+package de.proxietv.nisledbot.listener.message
 
 import de.proxietv.nisledbot.core.NisledBot
 import net.dv8tion.jda.api.entities.Member
@@ -57,7 +57,7 @@ class MessageReceiveListener(private val bot: NisledBot) : ListenerAdapter() {
             event.channel.history.retrievePast(20).queue {
                 val history = it.filter { msg -> msg.timeCreated.toEpochSecond() > message.timeCreated.toEpochSecond() - 60 }
                 val memberHistory = history.filter { msg -> msg.member == message.member }
-                if (memberHistory.size > 8 && memberHistory.size.toDouble() / history.size.toDouble() > 0.7) {
+                if (memberHistory.size > 7 && memberHistory.size.toDouble() / history.size.toDouble() > 0.6) {
                     message.delete().queue()
                     println("deleted")
                     return@queue
